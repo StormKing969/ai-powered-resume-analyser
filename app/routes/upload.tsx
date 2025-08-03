@@ -82,7 +82,7 @@ const Upload = () => {
         : feedback.message.content[0].text;
     data.feedback = JSON.parse(feedbackData);
     await kv.set(`resume:${uuid}`, JSON.stringify(data));
-    setStatusInfo("Analysis complete! You can now view your feedback.");
+    setStatusInfo("Analysis complete! Redirecting to results...");
     setIsProcessing(false);
 
     console.log("Resume Analysis Data:", data);
