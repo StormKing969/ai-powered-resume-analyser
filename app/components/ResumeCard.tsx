@@ -43,4 +43,5 @@ const ResumeCard = ({
     </Link>
   );
 };
+
 export default ResumeCard;
