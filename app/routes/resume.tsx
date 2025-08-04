@@ -62,6 +62,8 @@ const Resume = () => {
       );
       setImageUrl(imageUrl);
       setFeedback(data.feedback || "No feedback available");
+
+      console.log(data.feedback);
     };
 
     loadResumeData();
@@ -99,7 +101,7 @@ const Resume = () => {
                   src={imageUrl}
                   alt={"Resume Preview"}
                   className={
-                    "w-full h-full object-contain rounded-2xl shadow-lg"
+                    "w-full h-full object-contain rounded-2xl"
                   }
                 />
               </a>
