@@ -24,6 +24,7 @@ const Resume = () => {
   const [imageUrl, setImageUrl] = useState<string>("");
   const [resumeUrl, setResumeUrl] = useState<string>("");
   const [feedback, setFeedback] = useState<Feedback | null>(null);
+  const [timeoutReached, setTimeoutReached] = useState<boolean>(false);
 
   useEffect(() => {
     if (!isLoading && !auth.isAuthenticated) {
@@ -62,13 +63,22 @@ const Resume = () => {
         new Blob([imageBlob], { type: "image/png" }),
       );
       setImageUrl(imageUrl);
-      setFeedback(data.feedback || "No feedback available");
+      setFeedback(data.feedback || null);
 
       console.log(data.feedback);
     };
 
     loadResumeData();
   }, [id]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTimeoutReached(true);
+    }, 60000); // 60 seconds
+
+    // Clear timer if feedback arrives earlier
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <main className={"!pt-0"}>
@@ -121,12 +131,16 @@ const Resume = () => {
               />
               <Details feedback={feedback} />
             </div>
+          ) : timeoutReached ? (
+              <div className="text-center text-gray-500 text-lg">
+                No feedback available
+              </div>
           ) : (
-            <img
-              src={"/images/resume-scan-2.gif"}
-              alt={"Resume Scan"}
-              className={"w-full"}
-            />
+              <img
+                  src="/images/resume-scan-2.gif"
+                  alt="Resume Scan"
+                  className="w-full"
+              />
           )}
         </section>
       </div>
