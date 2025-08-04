@@ -5,9 +5,22 @@ import { usePuterStore } from "~/lib/puter";
 import { convertPdfToImage } from "~/lib/pdf2img";
 import { generateUUID } from "~/lib/utils";
 import { prepareInstructions } from "../../constants";
+import { useNavigate } from "react-router";
+
+export const meta = () => [
+  {
+    title: "Upload Resume",
+  },
+  {
+    name: "description",
+    content: "Upload your resume for feedback and ATS score",
+  },
+];
 
 const Upload = () => {
   const { auth, isLoading, fs, ai, kv } = usePuterStore();
+  const navigate = useNavigate();
+
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [statusInfo, setStatusInfo] = useState<string>("");
   const [haveFile, setHaveFile] = useState<File | null>(null);
@@ -41,7 +54,6 @@ const Upload = () => {
 
     if (!imageFile.file) {
       setIsProcessing(false);
-      console.log(imageFile.error)
       return setStatusInfo("Failed to convert PDF to image. Please try again.");
     }
 
@@ -60,8 +72,8 @@ const Upload = () => {
       companyName,
       jobTitle,
       jobDescription,
-      resumeFile: uploadedFile.path,
-      resumeImage: uploadedImage.path,
+      resumeFilePath: uploadedFile.path,
+      resumeImagePath: uploadedImage.path,
       feedback: "",
     };
     await kv.set(`resume:${uuid}`, JSON.stringify(data));
@@ -83,9 +95,8 @@ const Upload = () => {
     data.feedback = JSON.parse(feedbackData);
     await kv.set(`resume:${uuid}`, JSON.stringify(data));
     setStatusInfo("Analysis complete! Redirecting to results...");
-    setIsProcessing(false);
 
-    console.log("Resume Analysis Data:", data);
+    navigate(`/resume/${uuid}`);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -105,21 +116,21 @@ const Upload = () => {
   };
 
   return (
-    <main className={"bg-[url('./images/bg-main.svg')] bg-cover min-h-screen"}>
+    <main className={"bg-[url('/images/bg-main.svg')] bg-cover min-h-screen"}>
       <Navbar />
 
       <section className={"main-section"}>
         <div className={"page-heading py-16"}>
           <h1>Smart feedback</h1>
           {isProcessing ? (
-            <>
+            <div className={"h-full"}>
               <h2>{statusInfo}</h2>
               <img
-                src={"./images/resume-scan.gif"}
+                src={"/images/resume-scan.gif"}
                 alt={"Resume Scan"}
                 className={"w-full"}
               />
-            </>
+            </div>
           ) : (
             <h2>
               Upload your resume for Improvement Tips and Applicant Tracking

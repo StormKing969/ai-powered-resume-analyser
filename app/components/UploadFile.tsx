@@ -35,7 +35,7 @@ const UploadFile = ({ onFileSelect }: UploadedFile) => {
               className={"uploader-selected-file"}
               onClick={(e) => e.stopPropagation()}
             >
-              <img src={"./images/pdf.png"} alt={"PDF"} className={"size-10"} />
+              <img src={"/images/pdf.png"} alt={"PDF"} className={"size-10"} />
 
               <div className={"flex items-center space-x-3"}>
                 <div>
@@ -72,7 +72,7 @@ const UploadFile = ({ onFileSelect }: UploadedFile) => {
                 }
               >
                 <img
-                  src={"./icons/info.svg"}
+                  src={"/icons/info.svg"}
                   alt={"Upload"}
                   className={"size-20"}
                 />
