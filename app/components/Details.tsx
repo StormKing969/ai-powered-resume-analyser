@@ -5,6 +5,7 @@ import {
   AccordionHeader,
   AccordionItem,
 } from "./Accordion";
+import type {Feedback} from "../../types";
 
 // -----------------------------
 // ScoreBadge Component

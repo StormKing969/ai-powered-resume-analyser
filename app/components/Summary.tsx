@@ -1,4 +1,4 @@
-import React from "react";
+import type {Feedback} from "../../types";
 import ScoreGauge from "~/components/ScoreGauge";
 import ScoreBadge from "~/components/ScoreBadge";
 

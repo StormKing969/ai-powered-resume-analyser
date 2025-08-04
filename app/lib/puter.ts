@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import type {AIResponse, ChatMessage, FSItem, KVItem, PuterChatOptions, PuterUser} from "../../types/puter";
 
 declare global {
   interface Window {

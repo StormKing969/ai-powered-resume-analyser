@@ -4,6 +4,7 @@ import { usePuterStore } from "~/lib/puter";
 import Summary from "~/components/Summary";
 import ATS from "~/components/ATS";
 import Details from "~/components/Details";
+import type { Feedback } from "../../types";
 
 export const meta = () => [
   {
@@ -100,9 +101,7 @@ const Resume = () => {
                 <img
                   src={imageUrl}
                   alt={"Resume Preview"}
-                  className={
-                    "w-full h-full object-contain rounded-2xl"
-                  }
+                  className={"w-full h-full object-contain rounded-2xl"}
                 />
               </a>
             </div>
@@ -112,13 +111,22 @@ const Resume = () => {
         <section className={"feedback-section"}>
           <h2 className={"text-4xl !text-black font-bold"}>Resume Review</h2>
           {feedback ? (
-            <div className={"flex flex-col gap-8 animate-in fade-in duration-1000"}>
+            <div
+              className={"flex flex-col gap-8 animate-in fade-in duration-1000"}
+            >
               <Summary feedback={feedback} />
-              <ATS score={feedback.ATS.score || 0} suggestions={feedback.ATS.tips} />
+              <ATS
+                score={feedback.ATS.score || 0}
+                suggestions={feedback.ATS.tips}
+              />
               <Details feedback={feedback} />
             </div>
           ) : (
-            <img src={"/images/resume-scan-2.gif"} alt={"Resume Scan"} className={"w-full"} />
+            <img
+              src={"/images/resume-scan-2.gif"}
+              alt={"Resume Scan"}
+              className={"w-full"}
+            />
           )}
         </section>
       </div>

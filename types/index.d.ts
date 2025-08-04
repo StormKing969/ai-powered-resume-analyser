@@ -37,10 +37,10 @@ export interface Resume {
   jobTitle?: string;
 
   /** Path to the resume preview image (e.g. thumbnail) */
-  imagePath: string;
+  resumeImagePath: string;
 
   /** Path to the actual resume file (e.g. PDF) */
-  resumePath: string;
+  resumeFilePath: string;
 
   /** Feedback object containing scores and improvement tips */
   feedback: Feedback;

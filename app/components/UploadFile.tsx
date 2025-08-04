@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { formatSize } from "~/lib/utils";
+import type {UploadedFile} from "../../types/uploaded-file";
 
 const UploadFile = ({ onFileSelect }: UploadedFile) => {
   const maxFileSize = 20 * 1024 * 1024; // 20 MB

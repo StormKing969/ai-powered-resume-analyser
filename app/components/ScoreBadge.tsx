@@ -1,7 +1,7 @@
-import React from "react";
-import type { ScoreBadge } from "../../types/score-badge";
+import React from "react"
+import type {ScoreBadgeProps} from "../../types/score-badge";
 
-const ScoreBadge = ({ score }: ScoreBadge) => {
+const ScoreBadge = ({ score }: ScoreBadgeProps) => {
   let badgeColor: string;
   let badgeText: string;
 
